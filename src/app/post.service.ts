@@ -14,11 +14,11 @@ export class PostService {
 
   // get all posts
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.url_prefix + "/api/post/");
+    return this.http.get<Post[]>(this.url_prefix + '/api/post/');
   }
   // add new post
   createPost(post: PostParams): Observable<Post[]> {
-    return this.http.post<Post[]>(this.url_prefix + "/api/post/", post);
+    return this.http.post<Post[]>(this.url_prefix + '/api/post/', post);
   }
   // get post by id
   getPostById(id: string): Observable<Post> {

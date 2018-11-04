@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { BehaviorSubject } from "rxjs";
-import { mergeMap } from "rxjs/operators";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Comment, CommentParams, CommentService } from "../comment.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Comment, CommentParams, CommentService } from '../comment.service';
 import { Post, PostParams, PostService} from '../post.service';
 
 @Component({
-  selector: "app-post-detail",
-  templateUrl: "./post-detail.component.html",
-  styleUrls: ["./post-detail.component.css"]
+  selector: 'app-post-detail',
+  templateUrl: './post-detail.component.html',
+  styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
   comments: BehaviorSubject<Comment[]> = new BehaviorSubject([]);
