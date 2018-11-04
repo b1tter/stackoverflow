@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form [formGroup]="postForm" novalidate>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input formControlName="title" [(ngModel)]="title" type="text" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <div *ngIf="postForm.controls['title'].invalid && (postForm.controls['title'].dirty || postForm.controls['title'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="postForm.controls['title'].errors.required">
+          Title is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea formControlName="description" [(ngModel)]="description" class="form-control" id="exampleFormControlTextarea1"
+          rows="3"></textarea>
+      </div>
+      <div *ngIf="postForm.controls['description'].invalid && (postForm.controls['description'].dirty || postForm.controls['description'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="postForm.controls['description'].errors.required">
+          Description is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addPost()" [disabled]="postForm.pristine || postForm.invalid" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

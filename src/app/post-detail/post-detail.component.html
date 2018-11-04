@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div *ngFor="let comment of comments | async" class="card" style="margin-bottom: 30px">
+      <div class="card-body">
+        {{ comment.answer }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+
+</div>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+
+    <form [formGroup]="answerForm" novalidate>
+      <div class="form-group">
+        <h3>Answer</h3>
+        <textarea name="answer" formControlName="answer" class="form-control" id="" rows="3"></textarea>
+      </div>
+      <div *ngIf="answerForm.controls['answer'].invalid && (answerForm.controls['answer'].dirty || answerForm.controls['answer'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="answerForm.controls['answer'].errors.required">
+          Answer is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button (click)="addComment()" [disabled]="answerForm.pristine || answerForm.invalid" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

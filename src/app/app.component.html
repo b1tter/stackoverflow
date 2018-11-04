@@ -1,0 +1,24 @@
+<div class="container">
+    <!-- Menu -->
+    <nav class="navbar bg-dark navbar-dark">
+        <a routerLink="/posts" class="navbar-brand">
+            <img src="./assets/logo.png" alt="The Foo Bar Logo" style="width: 100px">
+        </a>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+
+            </li>
+            <li class="nav-item">
+                <a routerLink="/new-post" class="nav-link">
+                    <button class="btn btn-success">Ask a question</button>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="text-center">Welcome to stackoverflow</h1>
+        <p class="text-center">The most popular community for web developers.</p>
+    </div>
+
+    <router-outlet></router-outlet>
+</div>
