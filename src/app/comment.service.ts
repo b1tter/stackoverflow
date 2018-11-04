@@ -24,8 +24,9 @@ export class CommentService {
     );
   }
 
+
   // get comments
-  getComments(): Observable<Comment[]> {
+  getComments(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.url_prefix}/api/comment`);
   }
 }
@@ -37,4 +38,6 @@ export interface Comment extends CommentParams {
 export interface CommentParams {
   postId: string;
   answer: string;
+  likes: number;
+  dislikes: number;
 }

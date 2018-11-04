@@ -24,7 +24,12 @@ export class PostService {
   getPostById(id: string): Observable<Post> {
     return this.http.get<Post>(this.url_prefix + `/api/post/${id}`);
   }
+
+  getTitle(title: string): Observable<Post> {
+    return this.getTitle(title);
+  }
 }
+
 
 export interface Post extends PostParams {
   id: string;

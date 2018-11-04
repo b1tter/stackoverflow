@@ -29,22 +29,22 @@ app.use((req, res, next) => {
 const posts = [
   {
     id: uuid(),
-    title: "Angular 6 configurations of the dev server",
+    title: "Angular 6 configurations of the dev server?",
     description:
-      "I hope someone could help me with this because I've been trying to switch from webpack to angular cli. I've accomplished that but when other people pull my branch and try to go to the home page, but for some reason the index.html file gets downloaded and nothing else happens. I cant find anything online talking about this issue. For some reason, the content type header is being applied. Any ideas?"
+      "I hope someone could help me with this because I've been trying to switch from webpack to angular cli. I've accomplished that but when others. Any ideas?",
   },
   {
     id: uuid(),
-    title: "Angular change set data from API",
+    title: "Angular change set data from API?",
     description:
-      "Hey so I'm using an openAPI to get some data. Everything reads in correctly now I want to change the data. Say for 9.00 I get some data and after a couple of hours I get the next result. Now I want the result for 8.00 clock instead, I don't want all results I want it to end at a certain result. How can this be done? I want to change the data to my set times instead."
+      "Hey so I'm using an openAPI to get some data. Everything reads in correctly now I want to change the data. How can this be done? I want to change the data to my set times instead."
   },
   {
     id: uuid(),
     title:
-      "Angular material accordion based on user input override user click on input",
+      "Angular material accordion based on user input override user click on input?",
     description:
-      "I'm trying to build a small accordion using Angular Material and I want to make an input field so that whenever the user types something, the accordion's panels are automatically expanded if they have subitems which contain that string. "
+      "I'm trying to build a small accordion using Angular Material which contain that string. How can this be done? I want to change the data to my set times instead."
   }
 ];
 const comments = [
@@ -52,25 +52,33 @@ const comments = [
     id: uuid(),
     postId: posts[0].id,
     answer:
-      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage of a simple conditional expression or case statement that sets a new column equal to a certain zip code if a certain state is in that row."
+      "I want to match the state in the below csv file to the zip code in another csv file",
+    likes: 1,
+    dislikes: 1
   },
   {
     id: uuid(),
     postId: posts[0].id,
     answer:
-      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage of a simple conditional expression or case statement that sets a new column equal to a certain zip code if a certain state is in that row."
-  },
+      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage of ",
+    likes: 1,
+    dislikes: 1
+   },
   {
     id: uuid(),
     postId: posts[1].id,
     answer:
-      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage of a simple conditional expression or case statement that sets a new column equal to a certain zip code if a certain state is in that row."
+      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage.",
+    likes: 1,
+    dislikes: 1
   },
   {
     id: uuid(),
     postId: posts[2].id,
     answer:
-      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage of a simple conditional expression or case statement that sets a new column equal to a certain zip code if a certain state is in that row."
+      "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take.",
+    likes: 1,
+    dislikes: 1
   }
 ];
 
@@ -98,7 +106,7 @@ app.get("/api/post/:id", (req, res) => {
 });
 
 app.post("/api/comment", (req, res) => {
-  const { answer, postId } = req.body;
+  const { answer, postId} = req.body;
 
   const comment = {
     id: uuid(),
@@ -128,6 +136,23 @@ app.get("/api/comment/:id", (req, res) => {
   // TODO: If comment is null, you should throw 404
   res.json(comment);
 });
+
+// app.post("api/comment/:id/vote", (req, res) => {
+//   const index = findCommentIdxById(req.params.id);
+//   const isUp = req.body.up;
+//   if (index !== -1) {
+//     const comment = comments[index];
+//     const { vote } = comment;
+//     comments.splice(index, 1, {
+//       ...comment,
+//       vote: {
+//         ...vote,
+//         count: vote.count + 1,
+//         score: isUp ? (vote.count + 5) : (vote.count - 5)
+//       }
+//     })
+//   }
+// });
 
 function findPostIdxById(id) {
   return posts.findIndex(post => post.id === id);

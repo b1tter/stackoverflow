@@ -1,8 +1,29 @@
-<div class="row">
-  <div class="col-md-12">
+
+  <div class="col-md-6 float-right">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text">
+          Search
+        </span>
+    </div>
+    <input type="text" class="form-control" placeholder="Question" [(ngModel)]="filterPost">
+  </div>
+  </div>
+  <div class="container">
+  <div class="col-md-6">
     <h1>All questions</h1>
-    <div *ngFor="let post of posts | async">
-      <a routerLink="/posts/{{post.id}}">{{post.title}}</a>
+  </div>
+  <div class="col-md-6">
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="card" style="margin-bottom: 30px;" *ngFor="let post of posts | async | searchPost: filterPost">
+      <div class="card-header" style=" border-bottom: 0px solid; font-weight: bold; font-size: 20px">
+        <a routerLink="/posts/{{post.id}}">{{post.title}}</a>
+      </div>
+      <div class="card-body" ><b>Description:</b><p>{{post.description}} <a routerLink="/posts/{{post.id}}">read more..</a> </p>
+      </div>
     </div>
   </div>
 </div>

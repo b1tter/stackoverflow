@@ -6,7 +6,7 @@ import { PostDetailComponent } from "./post-detail/post-detail.component";
 import { NewPostComponent } from "./new-post/new-post.component";
 
 const appRoutes: Routes = [
-  { path: "posts", component: PostsComponent },
+  { path: "", component: PostsComponent },
   { path: "posts/:postId", component: PostDetailComponent },
   { path: "new-post", component: NewPostComponent },
   { path: "**", redirectTo: "home" }
