@@ -51,34 +51,46 @@ const comments = [
   {
     id: uuid(),
     postId: posts[0].id,
+    owner: "Jim",
     answer:
       "I want to match the state in the below csv file to the zip code in another csv file",
-    likes: 1,
-    dislikes: 1
+    vote: {
+      count: 2,
+      score: 15
+    }
   },
   {
     id: uuid(),
     postId: posts[0].id,
+    owner: "Kim",
     answer:
       "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage of ",
-    likes: 1,
-    dislikes: 1
+    vote: {
+      count: 1,
+      score: 10
+    }
    },
   {
     id: uuid(),
     postId: posts[1].id,
+    owner: "Manuel",
     answer:
       "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take advantage.",
-    likes: 1,
-    dislikes: 1
+    vote: {
+      count: 3,
+      score: 15
+    }
   },
   {
     id: uuid(),
     postId: posts[2].id,
+    owner: "Robert",
     answer:
       "I want to match the state in the below csv file to the zip code in another csv file. My dataset also does not contain that many states so I was thinking I could take.",
-    likes: 1,
-    dislikes: 1
+    vote: {
+      count: 3,
+      score: 15
+    }
   }
 ];
 
@@ -106,16 +118,19 @@ app.get("/api/post/:id", (req, res) => {
 });
 
 app.post("/api/comment", (req, res) => {
-  const { answer, postId} = req.body;
-
+  const { owner, answer, postId} = req.body;
   const comment = {
     id: uuid(),
+    owner,
     answer,
-    postId
+    postId,
+    vote: {
+      count: 0,
+      score: 0
+    }
   };
 
   comments.push(comment);
-
   res.json(comment);
 });
 
@@ -137,22 +152,24 @@ app.get("/api/comment/:id", (req, res) => {
   res.json(comment);
 });
 
-// app.post("api/comment/:id/vote", (req, res) => {
-//   const index = findCommentIdxById(req.params.id);
-//   const isUp = req.body.up;
-//   if (index !== -1) {
-//     const comment = comments[index];
-//     const { vote } = comment;
-//     comments.splice(index, 1, {
-//       ...comment,
-//       vote: {
-//         ...vote,
-//         count: vote.count + 1,
-//         score: isUp ? (vote.count + 5) : (vote.count - 5)
-//       }
-//     })
-//   }
-// });
+//votes
+app.post("/api/comment/:id/vote", (req, res) => {
+  const index = findCommentIdxById(req.params.id);
+  const isUp = req.body.up;
+  if (index !== -1) {
+    const comment = comments[index];
+    const vote = comment.vote;
+    comments.splice(index, 1, {
+      ...comment,
+      vote: {
+        ...vote,
+        count: vote.count + 1,
+        score: isUp ? vote.score + 5 : vote.score - 5
+      }
+    });
+    res.json(vote);
+  }
+});
 
 function findPostIdxById(id) {
   return posts.findIndex(post => post.id === id);

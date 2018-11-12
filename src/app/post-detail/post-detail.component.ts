@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Comment, CommentParams, CommentService } from '../comment.service';
-import { Post, PostParams, PostService} from '../post.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { mergeMap } from "rxjs/operators";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Comment, CommentParams, CommentService } from "../comment.service";
+import { Post, PostParams, PostService } from "../post.service";
 
 @Component({
-  selector: 'app-post-detail',
-  templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css']
+  selector: "app-post-detail",
+  templateUrl: "./post-detail.component.html",
+  styleUrls: ["./post-detail.component.css"]
 })
 export class PostDetailComponent implements OnInit {
   comments: BehaviorSubject<Comment[]> = new BehaviorSubject([]);
+  post: Post;
+  title: string;
+  description: string;
+  comment: Comment;
+  up: boolean;
+  score: number;
   // form
   answerForm: FormGroup;
-  post: Post;
   public answer: string;
-  public likes = 0;
-  public dislikes = 0;
+  public owner: string;
   public postId: string;
-  public title: string;
-  public description: string;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,8 @@ export class PostDetailComponent implements OnInit {
 
   generateFrom() {
     this.answerForm = this.af.group({
-      answer: ['', Validators.required]
+      answer: ["", Validators.required],
+      owner: ["", Validators.required]
     });
   }
 
@@ -50,14 +52,6 @@ export class PostDetailComponent implements OnInit {
       this.title = post.title;
       this.description = post.description;
     });
-  }
-
-  likeButton() {
-    this.likes++;
-  }
-
-  dislikeButton() {
-    this.dislikes++;
   }
 
   addComment() {
@@ -79,7 +73,17 @@ export class PostDetailComponent implements OnInit {
 
   private getPostId() {
     const route = this.route.snapshot;
-    const postId = route.paramMap.get('postId');
+    const postId = route.paramMap.get("postId");
     return postId;
+  }
+
+  vote(comment: Comment, up: boolean) {
+    const postId = this.getPostId();
+    this.commentService
+      .vote(comment, up)
+      .pipe(mergeMap(() => this.commentService.getCommentsForPostId(postId)))
+      .subscribe(comments => {
+        this.comments.next(comments);
+      });
   }
 }

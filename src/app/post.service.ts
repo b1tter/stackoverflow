@@ -30,7 +30,6 @@ export class PostService {
   }
 }
 
-
 export interface Post extends PostParams {
   id: string;
 }

@@ -40,7 +40,7 @@ export class NewPostComponent implements OnInit {
     };
     if (this.postForm.valid) {
       this.service.createPost(post).subscribe(() => {
-        this.router.navigate(["/posts"]);
+        this.router.navigate(["/"]);
       });
     }
   }

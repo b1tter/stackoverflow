@@ -10,14 +10,16 @@
     </div>
       <div class="card-header" style=" border-bottom: 0px solid; font-weight: bold; font-size: 16px">Replies:</div>
     <div *ngFor="let comment of comments | async" class="card" style="margin-bottom: 30px">
+      <div class="card-header">
+        {{ comment.owner }}
+      </div>
       <div class="card-body">
         {{ comment.answer }}
         <br>
         <div class="float-right" style="margin-top: 5px">
-        <button type="button" (click)="likeButton()" class="btn btn-default btn-sm">Like</button>
-          {{likes}}
-        <button (click)="dislikeButton()" class="btn btn-default btn-sm">Dislike</button>
-          {{dislikes}}
+        <button (click)="vote(comment, true)" class="btn btn-default btn-sm">Like</button>
+        <button style="margin: 0px 5px 0px 5px;" (click)="vote(comment, false)" class="btn btn-default btn-sm">Dislike</button>
+          <span>Score: {{comment.vote.score}}</span>
         </div>
       </div>
     </div>
@@ -30,7 +32,9 @@
   <div class="col-md-8 offset-md-2">
     <form [formGroup]="answerForm" novalidate>
       <div class="form-group">
-        <h3>Answer</h3>
+        <h5> Name </h5>
+        <input name="owner"  formControlName="owner" class="form-control">
+        <h5>Answer</h5>
         <textarea name="answer" formControlName="answer" class="form-control" id="" rows="3"></textarea>
       </div>
       <div *ngIf="answerForm.controls['answer'].invalid && (answerForm.controls['answer'].dirty || answerForm.controls['answer'].touched)"
