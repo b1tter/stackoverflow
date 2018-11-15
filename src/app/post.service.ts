@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class PostService {
   private url_prefix: string = environment.express_url;
@@ -21,8 +21,8 @@ export class PostService {
     return this.http.post<Post[]>(this.url_prefix + '/api/post/', post);
   }
   // get post by id
-  getPostById(id: string): Observable<Post> {
-    return this.http.get<Post>(this.url_prefix + `/api/post/${id}`);
+  getPostById(_id: string): Observable<Post> {
+    return this.http.get<Post>(this.url_prefix + `/api/post/${_id}`);
   }
 
   getTitle(title: string): Observable<Post> {
@@ -30,11 +30,11 @@ export class PostService {
   }
 }
 
-export interface Post extends PostParams {
-  id: string;
-}
-
 export interface PostParams {
   title: string;
   description: string;
+}
+
+export interface Post extends PostParams {
+  _id: string;
 }

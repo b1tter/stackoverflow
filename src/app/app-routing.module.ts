@@ -1,15 +1,15 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
-import { PostsComponent } from "./posts/posts.component";
-import { PostDetailComponent } from "./post-detail/post-detail.component";
-import { NewPostComponent } from "./new-post/new-post.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { PostsComponent } from './posts/posts.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 const appRoutes: Routes = [
-  { path: "", component: PostsComponent },
-  { path: "posts/:postId", component: PostDetailComponent },
-  { path: "new-post", component: NewPostComponent },
-  { path: "**", redirectTo: "home" }
+  { path: '', component: PostsComponent },
+  { path: 'posts/:postId', component: PostDetailComponent },
+  { path: 'new-post', component: NewPostComponent },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

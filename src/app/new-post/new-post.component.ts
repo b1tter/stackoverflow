@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { PostService, PostParams, Post } from "../post.service";
-import { BehaviorSubject } from "rxjs";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { PostService, PostParams, Post } from '../post.service';
+import { BehaviorSubject } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-new-post",
-  templateUrl: "./new-post.component.html",
-  styleUrls: ["./new-post.component.css"]
+  selector: 'app-new-post',
+  templateUrl: './new-post.component.html',
+  styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
   title: string;
@@ -27,8 +27,8 @@ export class NewPostComponent implements OnInit {
 
   createFrom() {
     this.postForm = this.pf.group({
-      title: ["", Validators.required],
-      description: ["", Validators.required]
+      title: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
 
@@ -40,7 +40,7 @@ export class NewPostComponent implements OnInit {
     };
     if (this.postForm.valid) {
       this.service.createPost(post).subscribe(() => {
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
       });
     }
   }

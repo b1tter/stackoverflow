@@ -20,9 +20,9 @@
   <div class="col-md-8 offset-md-2">
     <div class="card" style="margin-bottom: 30px;" *ngFor="let post of posts | async | searchPost: filterPost">
       <div class="card-header" style=" border-bottom: 0px solid; font-weight: bold; font-size: 20px">
-        <a routerLink="/posts/{{post.id}}">{{post.title}}</a>
+        <a routerLink="/posts/{{post._id}}">{{post.title}}</a>
       </div>
-      <div class="card-body" ><b>Description:</b><p>{{post.description}} <a routerLink="/posts/{{post.id}}">read more..</a> </p>
+      <div class="card-body" ><b>Description:</b><p>{{post.description}} <a routerLink="/posts/{{post._id}}">read more..</a> </p>
       </div>
     </div>
   </div>
