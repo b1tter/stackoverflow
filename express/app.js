@@ -5,11 +5,6 @@ const morgan = require("morgan");
 const mongodb = require("mongodb");
 let ObjectId = mongodb.ObjectId;
 
-//deploy
-import dotenv from 'dotenv';
-require('dotenv').config();
-//
-
 let db;
 
 // const shortcuts
@@ -19,7 +14,7 @@ const Comments_Collection = 'comments';
 
 
 //connect to mongodb
-mongodb.MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function (err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://bitter:patrascu10@ds039311.mlab.com:39311/stackoverflowdb", { useNewUrlParser: true }, function (err, client) {
 if (err) {
   console.log(err);
   process.exit(1);
